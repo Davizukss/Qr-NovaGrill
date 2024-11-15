@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../Styles/NavBar.css';
 import logo from "../../assets/logoNovaGrill.png";
+import Pesquisa from '../Pesquisa/Pesquisa';
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,18 +26,14 @@ function NavBar() {
 
         <div className="search-icon">
           <button className="search-button" onClick={toggleSearch}>
-            <i className="fas fa-search"></i>
+            <i className={searchOpen ? "fas fa-times" : "fas fa-search"}></i>
           </button>
         </div>
       </div>
 
-      <div className={`search-dropdown ${searchOpen ? 'open' : ''}`}>
-        <input type="text" className="search-input" placeholder="Ex: T-BONE" />
-      </div>
+      <Pesquisa searchOpen={searchOpen} />
 
-     
       <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
-        
         <button className="close-menu" onClick={toggleMenu}>×</button>
         <ul>
           <li>
