@@ -5,28 +5,34 @@ import CUPIM from "../assets/CUPIM.jpg";
 
 export const pratosMock = [
   {
-    id: 'pratos',
+    id: 'Pratos',
     nome: 'Churrasco de Picanha',
     descricao: 'Deliciosa picanha grelhada na brasa, acompanhada de farofa e arroz.',
     preco: 'R$ 49,90',
     imagem: ANCHO,
   },
   {
-    id: 'frango-assado',
+    id: 'Favoritos',
     nome: 'Frango Assado',
     descricao: 'Frango assado crocante, temperado com ervas finas, acompanhado de batatas.',
     preco: 'R$ 29,90',
     imagem: PRIMERIBS, 
   },
   {
-    id: 'costela-bafo',
+    id: 'Porcoes',
     nome: 'Costela no Bafo',
     descricao: 'Costela macia e suculenta, preparada lentamente na brasa.',
     preco: 'R$ 59,90',
     imagem: TBONE,  
   },
   {
-    id: 'picanha-argentino',
+    id: 'Sobremesas',
+    nome: 'Costela no Bafo',
+    descricao: 'Costela macia e suculenta, preparada lentamente na brasa.',
+    preco: 'R$ 59,90',
+    imagem: CUPIM,  
+  },{
+    id: 'Bebidas',
     nome: 'Costela no Bafo',
     descricao: 'Costela macia e suculenta, preparada lentamente na brasa.',
     preco: 'R$ 59,90',

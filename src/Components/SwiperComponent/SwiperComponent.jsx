@@ -2,10 +2,11 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css'; 
-import CUPIM from "../../assets/CUPIM.jpg"
-import ANCHO from "../../assets/ANCHO.jpg"
-import PRIMERIBS from "../../assets/PRIMERIBS.jpg"
-import TBONE from "../../assets/TBONE.jpg"
+import Slide1 from "../../assets/grillSlide1.jpg"
+import Slide2 from "../../assets/grillSlide2.jpg"
+import Slide3 from "../../assets/grillSlide3.jpg"
+import Slide4 from "../../assets/grillSlide4.jpg"
+import Slide5 from "../../assets/grillSlide5.jpg"
 
 const SwiperComponent = () => {
   const settings = {
@@ -22,16 +23,19 @@ const SwiperComponent = () => {
     <div className="swiper-container" style={{ width: '100%', overflow: 'hidden', marginTop: '2px' }}>
       <Slider {...settings}>
         <div>
-          <img src={CUPIM} alt="CUPIM" style={{ width: '100%' }} />
+          <img src={Slide1} alt="Slide1" style={{ width: '100%' }} />
         </div>
         <div>
-          <img src={ANCHO} alt="ANCHO" style={{ width: '100%' }} />
+          <img src={Slide2} alt="Slide2" style={{ width: '100%' }} />
         </div>
         <div>
-          <img src={PRIMERIBS} alt="PRIMERIBS" style={{ width: '100%' }} />
+          <img src={Slide3} alt="Slide3" style={{ width: '100%' }} />
         </div>
         <div>
-          <img src={TBONE} alt="TBONE" style={{ width: '100%' }} />
+          <img src={Slide4} alt="Slide4" style={{ width: '100%' }} />
+        </div>
+        <div>
+          <img src={Slide5} alt="Slide5" style={{ width: '100%' }} />
         </div>
       </Slider>
     </div>
