@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../Styles/MenuHorizontal.css";
-
 import Pratos from "../../assets/Prato.png";
 import Favoritos from "../../assets/feijoada.png";
 import Sobremesas from "../../assets/Sobremesa.png";
@@ -8,15 +7,36 @@ import Bebidas from "../../assets/Bebidas.png";
 import Porcoes from "../../assets/Porcao.png";
 
 const MenuHorizontal = () => {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 500) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({
+        top: section.offsetTop - (isSticky ? 80 : 0),
+        behavior: "smooth",
+      });
     }
   };
 
   return (
-    <div className="menu-horizontal">
+    <div className={`menu-horizontal ${isSticky ? "sticky" : ""}`}>
       <div className="menu-item" onClick={() => scrollToSection("Pratos")}>
         <div className="image-container">
           <img src={Pratos} alt="Pratos" />
