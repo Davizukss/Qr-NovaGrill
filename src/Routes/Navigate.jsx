@@ -9,9 +9,9 @@ export default function Navigate() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Cardapio" element={<Cardapio />} />
-        <Route path="/produto/:id" element={<PratoDetalhes/>} />
+        <Route path="/Qr-NovaGrill/" element={<Home />} />
+        <Route path="/Qr-NovaGrill/Cardapio" element={<Cardapio />} />
+        <Route path="/Qr-NovaGrill/produto/:id" element={<PratoDetalhes/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
