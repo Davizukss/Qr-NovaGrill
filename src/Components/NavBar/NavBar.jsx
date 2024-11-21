@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../../Styles/NavBar.css';
 import logo from "../../assets/logoNovaGrill.png";
 import Pesquisa from '../Pesquisa/Pesquisa';
+import { pratosMock } from '../../mocks/CardapioMocks';
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,6 +11,18 @@ function NavBar() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
+
+  useEffect(() => {
+    if (searchOpen) {
+      document.body.style.overflow = 'hidden'; 
+    } else {
+      document.body.style.overflow = ''; 
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [searchOpen]);
 
   return (
     <nav className="navbar">
@@ -31,7 +44,7 @@ function NavBar() {
         </div>
       </div>
 
-      <Pesquisa searchOpen={searchOpen} />
+      <Pesquisa searchOpen={searchOpen} pratosMock={pratosMock} />
 
       <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
         <button className="close-menu" onClick={toggleMenu}>×</button>
@@ -41,6 +54,28 @@ function NavBar() {
           </li>
           <li>
             <Link to="/Cardapio" className="navbar-link" onClick={toggleMenu}>Cardápio</Link>
+          </li>
+          <li>
+            <a
+              href="https://www.ifood.com.br/delivery/sao-paulo-sp/nova-grill---vila-palmeiras-vila-palmeiras"
+              className="navbar-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={toggleMenu}
+            >
+              Ifood
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://deliverydireto.com.br/novagrillfreguesia/novagrillfreguesia"
+              className="navbar-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={toggleMenu}
+            >
+              Delivery Direto
+            </a>
           </li>
         </ul>
       </div>

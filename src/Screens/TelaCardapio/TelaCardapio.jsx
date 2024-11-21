@@ -10,7 +10,7 @@ export default function TelaCardapio() {
     <div>
       <NavBar />
       <Swiper/>
-      <h3 className="welcome-text">NovaGrill - Freguesia do Ó</h3>
+      <h3 className="welcome-text">Nova Grill - Freguesia do Ó</h3>
       <MenuHorizontal/>
       <ScrollToTop/>
       <Cardapio/> 
