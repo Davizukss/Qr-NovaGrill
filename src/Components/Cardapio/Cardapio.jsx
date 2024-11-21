@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../Styles/Cardapio.css';
-import { pratosMock } from '../../Mocks/CardapioMocks.jsx';
+import { pratosMock } from '../../Mocks/CardapioMocks.jsx/';
 import { Link } from 'react-router-dom';
 function Cardapio() {
   return (
