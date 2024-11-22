@@ -14,10 +14,11 @@ function Home() {
     <div className="home-container">
       <img src={logo} alt="Logo NovaGrill" className="logo" />
       <div className="card">
-        <p className="card-text">Confira os nossos pratos deliciosos!</p>
+        <h2>Cardápios Nova Grill</h2>
+      <h3 className="card-text" >Acesse:</h3>
       </div>  
       <div className="button-container">
-        <button onClick={handleNavigateToMenu} className="btn-cardapio">Ver Cardápio</button>
+        <button onClick={handleNavigateToMenu} className="btn-cardapio">Nova Grill Freguesia do Ó</button>
       </div>
     </div>
   );

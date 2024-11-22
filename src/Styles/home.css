@@ -26,6 +26,8 @@
     text-align: center;
     max-width: 400px;
     width: 100%;
+    color: #fff;
+
   }
   
   .card-text {
@@ -39,9 +41,9 @@
   }
   
   .btn-cardapio {
-    background-color: #500B0B;
+    background-color: #4e0b0b;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 12px 50px;
     border: none;
     border-radius: 8px;
