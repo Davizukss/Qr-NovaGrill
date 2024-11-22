@@ -47,13 +47,18 @@ function NavBar() {
       <Pesquisa searchOpen={searchOpen} pratosMock={pratosMock} />
 
       <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
-        <button className="close-menu" onClick={toggleMenu}>×</button>
+        <div className="close-menu">
+        <button  onClick={toggleMenu}>×</button>
+        </div>
+          <div className='logo-menu'>
+            <img src={logo} alt="NovaGrill" />
+          </div>
         <ul>
           <li>
             <Link to="/Qr-NovaGrill" className="navbar-link" onClick={toggleMenu}>Home</Link>
           </li>
           <li>
-            <Link to="/Cardapio" className="navbar-link" onClick={toggleMenu}>Cardápio</Link>
+            <Link to="/Qr-NovaGrill/Cardapio" className="navbar-link" onClick={toggleMenu}>Cardápio</Link>
           </li>
           <li>
             <a
@@ -75,6 +80,18 @@ function NavBar() {
               onClick={toggleMenu}
             >
               Delivery Direto
+            </a>
+          </li>
+          <li className="navbar-contact">
+            <a href="tel:+55113931-1776" className="navbar-link">
+              <i className="fas fa-phone-alt"></i> 
+              <span> (11) 3931-1776</span>
+            </a>
+          </li>
+          <li className="navbar-contact-p">
+            <a href="https://kub.sh/e919cd" className="navbar-link" target="_blank" rel="noopener noreferrer">
+              <i className="fas fa-map-pin maps"></i>
+              <span> Rua Bartholomeu do Canto, 243, <br/> Vila Albertina, São Paulo - SP</span>
             </a>
           </li>
         </ul>
