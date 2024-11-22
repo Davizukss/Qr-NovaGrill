@@ -2,6 +2,7 @@ import React from 'react';
 import '../../Styles/Cardapio.css';
 import { pratosMock } from '../../Mocks/CardapioMocks.jsx/';
 import { Link } from 'react-router-dom';
+
 function Cardapio() {
   return (
     <div className="cardapio-container">
@@ -15,7 +16,7 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
-            <Link to={`/produto/${prato.id}`} className="cardapio-item">
+            <Link to={`/produto/${prato.id}`} className="cardapio-header">
               <button>Ver Mais</button>
             </Link>
           </div>
@@ -32,10 +33,10 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
+          <Link to={`/produto/${prato.id}`}>
+            <button>Ver Mais</button>
+          </Link>
           </div>
-          <Link to={`/produto/${prato.id}`} className="cardapio-item">
-              <button>Ver Mais</button>
-            </Link>
         </div>
       ))}
 
@@ -49,10 +50,10 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
+          <Link to={`/produto/${prato.id}`}>
+            <button>Ver Mais</button>
+          </Link>
           </div>
-          <Link to={`/produto/${prato.id}`} className="cardapio-item">
-              <button>Ver Mais</button>
-            </Link>
         </div>
       ))}
 
@@ -66,10 +67,10 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
+          <Link to={`/produto/${prato.id}`}>
+            <button>Ver Mais</button>
+          </Link>
           </div>
-            <Link to={`/produto/${prato.id}`} className="cardapio-item">
-              <button>Ver Mais</button>
-            </Link>
         </div>
       ))}
 
@@ -83,10 +84,10 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
+          <Link to={`/produto/${prato.id}`}>
+            <button>Ver Mais</button>
+          </Link>
           </div>
-          <Link to={`/produto/${prato.id}`} className="cardapio-item">
-              <button>Ver Mais</button>
-            </Link>
         </div>
       ))}
     </div>

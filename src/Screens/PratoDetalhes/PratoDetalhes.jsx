@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { pratosMock } from '../../Mocks/CardapioMocks.jsx/'
+import { useParams, Link } from 'react-router-dom';
+import { pratosMock } from '../../Mocks/CardapioMocks.jsx/';
+import "../../Styles/PratoDetalhes.css";
 
 export default function PratoDetalhes() {
   const { id } = useParams(); 
   const [produto, setProduto] = useState(null); 
 
   useEffect(() => {
-  
     const pratoEncontrado = [
       ...pratosMock.pratos,
       ...pratosMock.favoritos,
@@ -25,10 +25,18 @@ export default function PratoDetalhes() {
 
   return (
     <div className="prato-detalhes">
-      <h1>{produto.nome}</h1>
-      <img src={produto.imagem} alt={produto.nome} />
-      <p>{produto.descricao}</p>
-      <p><strong>Preço:</strong> {produto.preco}</p>
+      <div className="voltar-btn">
+        <Link to="/Qr-NovaGrill/Cardapio">
+          <i className="fas fa-arrow-left voltar-seta"></i>
+        </Link> 
+        <span className="voltar-text">Voltar</span>
+      </div>
+
+
+      <img src={produto.imagem} alt={produto.nome} className="prato-imagem" />
+      <h1 className="prato-nome">{produto.nome}</h1>
+      <p className="prato-descricao">{produto.descricao}</p>
+      <p className="preco"><strong>Preço:</strong> {produto.preco}</p>
     </div>
   );
 }

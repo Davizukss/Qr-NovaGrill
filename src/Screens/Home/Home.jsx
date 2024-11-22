@@ -1,23 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logoNovaGrill.png';
+import "../../Styles/home.css"
 
 function Home() {
   const navigate = useNavigate(); 
 
- 
   const handleNavigateToMenu = () => {
-    navigate('/cardapio'); 
+    navigate('/Qr-NovaGrill/cardapio'); 
   };
 
   return (
-    <div>
-      <img src={logo} alt="Logo NovaGrill" />
+    <div className="home-container">
+      <img src={logo} alt="Logo NovaGrill" className="logo" />
       <div className="card">
-        <p>Confira os nossos pratos deliciosos!</p>
+        <p className="card-text">Confira os nossos pratos deliciosos!</p>
       </div>  
-      <div>
-        <button onClick={handleNavigateToMenu}>Ver Cardápio</button>
+      <div className="button-container">
+        <button onClick={handleNavigateToMenu} className="btn-cardapio">Ver Cardápio</button>
       </div>
     </div>
   );

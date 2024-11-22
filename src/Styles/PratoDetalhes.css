@@ -1,0 +1,106 @@
+.prato-detalhes {
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+  
+  .prato-detalhes .voltar-btn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #500B0B;
+    font-size: 1.2rem;
+    background-color: #fff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .prato-detalhes .voltar-seta {
+    cursor: pointer;
+    color: #500B0B;
+    font-size: 1.5rem;
+    position: absolute; 
+    left: 10px;
+    top: 50%;  
+    transform: translateY(-50%);  
+  }
+  
+  .prato-detalhes .voltar-text {
+    font-weight: 550;
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  .prato-detalhes .prato-imagem {
+    width: 100%;
+    height: auto;
+    margin-top: 10px; 
+  }
+  
+  .prato-detalhes .prato-nome {
+    font-size: 2rem;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .prato-detalhes .prato-descricao {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  .prato-detalhes .preco {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #500B0B;
+  }
+  
+  @media (min-width: 600px) {
+    .prato-detalhes {
+      padding: 30px;
+    }
+  
+    .prato-detalhes .prato-nome {
+      font-size: 2.5rem;
+    }
+  
+    .prato-detalhes .prato-imagem {
+      max-width: 400px;
+    }
+  
+    .prato-detalhes .prato-descricao {
+      font-size: 1.2rem;
+    }
+  
+    .prato-detalhes .preco {
+      font-size: 1.6rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .prato-detalhes {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+  
+    .prato-detalhes .prato-nome {
+      font-size: 3rem;
+    }
+  
+    .prato-detalhes .prato-descricao {
+      font-size: 1.3rem;
+    }
+  
+    .prato-detalhes .preco {
+      font-size: 1.8rem;
+    }
+  }
+  

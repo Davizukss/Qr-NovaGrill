@@ -1,0 +1,70 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    background-image: url('../assets/fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+}
+  
+  .logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #fff;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn-cardapio {
+    background-color: #500B0B;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 12px 50px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-cardapio:hover {
+    background-color: #8f1919; 
+  }
+  
+  @media (min-width: 600px) {
+    .logo {
+      width: 300px;
+    }
+  
+    .card {
+      max-width: 500px;
+    }
+  
+    .btn-cardapio {
+      font-size: 1.3rem;
+      padding: 14px 28px;
+    }
+  }
+  

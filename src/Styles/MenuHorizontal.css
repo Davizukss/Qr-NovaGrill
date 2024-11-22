@@ -1,21 +1,19 @@
 .menu-horizontal {
+  height: 10rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem;
-  margin-bottom: 20px;
+  padding: 0.5rem;
+  margin-bottom: 10px;
   gap: 1rem;
   cursor: grab;
   transition: all 0.3s ease-in-out;
-  scrollbar-width: thin;
-  scrollbar-color: #500B0B #f1f1f1;
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   overflow-x: auto;
-  overflow-y: hidden; 
+  overflow-y: hidden;
+  scrollbar-width: none;
 }
 
 .menu-horizontal.sticky {
@@ -76,13 +74,14 @@
   height: 80px;
   text-align: center;
   position: relative;
-  cursor: pointer;
+  cursor: grab;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   border: 1px solid transparent;
 }
 
 .menu-item img {
+  border-radius: 6px;
   user-select: none;
   width: 100%;
   height: auto;
@@ -114,12 +113,12 @@
   .menu-horizontal {
     overflow-x: auto;
   }
-
+  
   .menu-item {
     width: 200px;
     height: 100px;
   }
-
+  
   .menu-item .title-overlay {
     font-size: 1.2rem;
   }
@@ -175,7 +174,7 @@
 }
 
 .menu-horizontal::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 .menu-horizontal::-webkit-scrollbar-thumb {

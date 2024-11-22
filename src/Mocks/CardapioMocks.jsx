@@ -4,7 +4,7 @@ export const pratosMock = {
   pratos: [
     {
       id: '1',
-      nome: 'Churrasco de Picanha',
+      nome: 'Churrasco de Picanha (1 pessoa)',
       descricao: 'Deliciosa picanha grelhada na brasa, acompanhada de farofa e arroz.',
       preco: 'R$ 49,90',
       imagem: imagem,

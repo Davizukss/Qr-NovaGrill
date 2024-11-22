@@ -30,6 +30,7 @@ html {
   width: 100%;
   height: auto;
   align-items: center;
+  text-decoration: none;
 }
 
 .cardapio-item .image-container {

@@ -50,14 +50,14 @@ function NavBar() {
         <button className="close-menu" onClick={toggleMenu}>×</button>
         <ul>
           <li>
-            <Link to="/" className="navbar-link" onClick={toggleMenu}>Home</Link>
+            <Link to="/Qr-NovaGrill" className="navbar-link" onClick={toggleMenu}>Home</Link>
           </li>
           <li>
             <Link to="/Cardapio" className="navbar-link" onClick={toggleMenu}>Cardápio</Link>
           </li>
           <li>
             <a
-              href="https://www.ifood.com.br/delivery/sao-paulo-sp/nova-grill---vila-palmeiras-vila-palmeiras"
+              href="http://surl.li/wuzxhs"
               className="navbar-link"
               target="_blank"
               rel="noopener noreferrer"
