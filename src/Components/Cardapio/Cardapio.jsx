@@ -33,63 +33,61 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
-          <Link to={`/produto/${prato.id}`}>
-            <button>Ver Mais</button>
-          </Link>
+            <Link to={`/produto/${prato.id}`}>
+              <button>Ver Mais</button>
+            </Link>
           </div>
         </div>
       ))}
-
       <h2 id="Porcoes">Porções</h2>
       {pratosMock.porcoes.map((prato) => (
-        <div className="cardapio-item" key={prato.id} id={prato.id}>
-          <div className="image-container">
+        <div className="item-card" key={prato.id} id={prato.id}>
+          <div className="image-wrapper">
             <img src={prato.imagem} alt={prato.nome} />
           </div>
-          <div className="text-content">
+          <div className="details">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{prato.preco}</div>
-          <Link to={`/produto/${prato.id}`}>
-            <button>Ver Mais</button>
-          </Link>
+            <div className="price-tag">{prato.preco}</div>
+            <Link to={`/produto/${prato.id}`}>
+              <button>Ver Mais</button>
+            </Link>
           </div>
         </div>
       ))}
-
       <h2 id="Sobremesas">Sobremesas</h2>
       {pratosMock.sobremesas.map((prato) => (
-        <div className="cardapio-item" key={prato.id} id={prato.id}>
-          <div className="image-container">
+        <div className="item-card" key={prato.id} id={prato.id}>
+          <div className="image-wrapper">
             <img src={prato.imagem} alt={prato.nome} />
           </div>
-          <div className="text-content">
+          <div className="details">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{prato.preco}</div>
-          <Link to={`/produto/${prato.id}`}>
-            <button>Ver Mais</button>
-          </Link>
+            <div className="price-tag">{prato.preco}</div>
+            <Link to={`/produto/${prato.id}`}>
+              <button>Ver Mais</button>
+            </Link>
+          </div>
+        </div>
+      ))}
+      <h2 id="Bebidas">Bebidas</h2>
+      {pratosMock.bebidas.map((prato) => (
+        <div className="item-card" key={prato.id} id={prato.id}>
+          <div className="image-wrapper">
+            <img src={prato.imagem} alt={prato.nome} />
+          </div>
+          <div className="details">
+            <h3>{prato.nome}</h3>
+            <p>{prato.descricao}</p>
+            <div className="price-tag">{prato.preco}</div>
+            <Link to={`/produto/${prato.id}`}>
+              <button>Ver Mais</button>
+            </Link>
           </div>
         </div>
       ))}
 
-      <h2 id="Bebidas">Bebidas</h2>
-      {pratosMock.bebidas.map((prato) => (
-        <div className="cardapio-item" key={prato.id} id={prato.id}>
-          <div className="image-container">
-            <img src={prato.imagem} alt={prato.nome} />
-          </div>
-          <div className="text-content">
-            <h3>{prato.nome}</h3>
-            <p>{prato.descricao}</p>
-            <div className="price">{prato.preco}</div>
-          <Link to={`/produto/${prato.id}`}>
-            <button>Ver Mais</button>
-          </Link>
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
