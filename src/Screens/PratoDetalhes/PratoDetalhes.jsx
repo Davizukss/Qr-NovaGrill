@@ -32,11 +32,13 @@ export default function PratoDetalhes() {
         <span className="voltar-text">Voltar</span>
       </div>
 
-
       <img src={produto.imagem} alt={produto.nome} className="prato-imagem" />
+    <div className='card-prato'>
       <h1 className="prato-nome">{produto.nome}</h1>
       <p className="prato-descricao">{produto.descricao}</p>
       <p className="preco"><strong>Preço:</strong> {produto.preco}</p>
+    </div>
+    <div className='footer-produto'></div>
     </div>
   );
 }

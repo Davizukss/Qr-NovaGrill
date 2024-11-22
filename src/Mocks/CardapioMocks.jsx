@@ -4,9 +4,9 @@ export const pratosMock = {
   pratos: [
     {
       id: '1',
-      nome: 'Churrasco de Picanha (1 pessoa)',
-      descricao: 'Deliciosa picanha grelhada na brasa, acompanhada de farofa e arroz.',
-      preco: 'R$ 49,90',
+      nome: 'T-Bone Steak (Individual)',
+      descricao: 'Delicioso T-Bone, acompanhado de farofa, vinagrete, fritas e arroz.',
+      preco: 'R$ 149,90',
       imagem: imagem,
     },
     {
