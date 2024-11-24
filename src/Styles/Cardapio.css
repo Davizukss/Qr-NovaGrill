@@ -15,7 +15,6 @@ html {
   text-decoration: none;
 }
 
-/* Container da imagem */
 .image-wrapper {
   flex-shrink: 0;
 }
@@ -195,42 +194,48 @@ html {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .cardapio-item {
-    width: calc(50% - 1rem);
-  }
 
+  .cardapio-item {
+    flex-direction: column;
+  }
+  .text-content{
+    font-size: 1.5rem;
+  }
+  .cardapio-item p {
+    font-size: 1rem;
+  }
   .cardapio-item img {
-    width: 150px;
+    width: 400px;
+  }
+  .details span{
+    font-size: 1.3rem;
+  }
+  .item-card button {
+    max-width: 400px;
+    padding: 1.2rem;
+  }
+  .image-wrapper img {
+    width: 400px;
     height: auto;
   }
 
   .cardapio-item h2 {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
 
   .cardapio-item p {
     font-size: 1rem;
+  }
+  .cardapio-item span {
+    font-size: 1.3rem;
+  }
+  .cardapio-item button {
+    width: 100%;
+    padding: 1rem;
+
   }
 }
 
 @media (min-width: 1024px) {
-  .cardapio-item {
-    width: calc(25% - 1rem);
-  }
-
-  .cardapio-header h1 {
-    font-size: 3rem;
-  }
-
-  .cardapio-item h2 {
-    font-size: 1.3rem;
-  }
-
-  .cardapio-item p {
-    font-size: 1rem;
-  }
-
-  .cardapio-item .price {
-    font-size: 1.3rem;
-  }
+  
 }

@@ -12,21 +12,15 @@ body {
   color: #000;
   line-height: 2;
 }
-
-
-
 #root {
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #root {
-    max-width: 768px;
+    width: 70%;
+    margin: 0 auto; 
   }
 }
 
-@media (min-width: 1024px) {
-  #root {
-    max-width: 1024px;
-  }
-}
+

@@ -56,17 +56,23 @@
   }
   
   @media (min-width: 600px) {
+    .home-container {
+      background-repeat: repeat; /* Repetir o fundo em telas maiores */
+      background-size: auto; /* Garantir que o fundo não se deforme */
+    }
+
     .logo {
-      width: 300px;
+      width: 400px;
     }
-  
+
     .card {
-      max-width: 500px;
+      max-width: 600px;
     }
-  
+
     .btn-cardapio {
-      font-size: 1.3rem;
-      padding: 14px 28px;
+      font-size: 1.6rem;
+      padding: 16px 28px;
     }
-  }
+}
+
   

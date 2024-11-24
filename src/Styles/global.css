@@ -17,7 +17,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 body::-webkit-scrollbar {
@@ -47,14 +46,5 @@ button {
 }
 
 
-a {
-  font-weight: 500;
-  color: #646cff;
-}
 
 
-@media (min-width: 768px) {
-  h1 {
-    font-size: 3.2em;
-  }
-}

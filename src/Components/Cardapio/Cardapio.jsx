@@ -17,7 +17,7 @@ function Cardapio() {
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
             <Link to={`/produto/${prato.id}`} className="cardapio-header">
-              <button>Ver Mais</button>
+              <button><span>Ver Mais</span></button>
             </Link>
           </div>
         </div>
@@ -34,7 +34,7 @@ function Cardapio() {
             <p>{prato.descricao}</p>
             <div className="price">{prato.preco}</div>
             <Link to={`/produto/${prato.id}`}>
-              <button>Ver Mais</button>
+              <button><span>Ver Mais</span></button>
             </Link>
           </div>
         </div>
@@ -50,7 +50,7 @@ function Cardapio() {
             <p>{prato.descricao}</p>
             <div className="price-tag">{prato.preco}</div>
             <Link to={`/produto/${prato.id}`}>
-              <button>Ver Mais</button>
+              <button><span>Ver Mais</span></button>
             </Link>
           </div>
         </div>
@@ -66,7 +66,7 @@ function Cardapio() {
             <p>{prato.descricao}</p>
             <div className="price-tag">{prato.preco}</div>
             <Link to={`/produto/${prato.id}`}>
-              <button>Ver Mais</button>
+              <button><span>Ver Mais</span></button>
             </Link>
           </div>
         </div>
@@ -82,7 +82,7 @@ function Cardapio() {
             <p>{prato.descricao}</p>
             <div className="price-tag">{prato.preco}</div>
             <Link to={`/produto/${prato.id}`}>
-              <button>Ver Mais</button>
+              <button><span>Ver Mais</span></button>
             </Link>
           </div>
         </div>
