@@ -91,6 +91,7 @@
 }
 
 .search-link {
+  width: 100%;
   font-size: 1.4rem;
   color: #500B0B;
   text-decoration: none;
