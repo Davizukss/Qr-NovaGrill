@@ -1,93 +1,143 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../Styles/Cardapio.css';
-import { pratosMock } from '../../Mocks/CardapioMocks.jsx/';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { app } from '../../Api/firebaseConfig.jsx';
 import { Link } from 'react-router-dom';
 
+const db = getFirestore(app);
+
 function Cardapio() {
+  const [pratos, setPratos] = useState([]);
+  const [favoritos, setFavoritos] = useState([]);
+  const [porcoes, setPorcoes] = useState([]);
+  const [sobremesas, setSobremesas] = useState([]);
+  const [bebidas, setBebidas] = useState([]);
+  const [executivos, setExecutivos] = useState([]); 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const pratosRef = collection(db, 'itens');
+      const querySnapshot = await getDocs(pratosRef);
+      
+      const pratosData = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id 
+      }));
+
+      setPratos(pratosData.filter(item => item.categoria === 'Pratos'));
+      setFavoritos(pratosData.filter(item => item.categoria === 'Favoritos'));
+      setExecutivos(pratosData.filter(item => item.categoria === 'Executivos')); 
+      setPorcoes(pratosData.filter(item => item.categoria === 'Porções'));
+      setSobremesas(pratosData.filter(item => item.categoria === 'Sobremesas'));
+      setBebidas(pratosData.filter(item => item.categoria === 'Bebidas'));
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="cardapio-container">
       <h2 id="Pratos">Pratos</h2>
-      {pratosMock.pratos.map((prato) => (
-        <div className="cardapio-item" key={prato.id} id={prato.id}>
+      {pratos.length > 0 ? pratos.map((prato) => (
+        <div className="cardapio-item" key={prato.id}>
           <div className="image-container">
-            <img src={prato.imagem} alt={prato.nome} />
+            <img src={prato.imagemUrl} alt={prato.nome} />
           </div>
           <div className="text-content">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{prato.preco}</div>
+            <div className="price">{`R$ ${prato.preco}`}</div>
             <Link to={`/produto/${prato.id}`} className="cardapio-header">
               <button><span>Ver Mais</span></button>
             </Link>
           </div>
         </div>
-      ))}
+      )) : <p>Carregando Pratos...</p>}
 
       <h2 id="Favoritos">Favoritos</h2>
-      {pratosMock.favoritos.map((prato) => (
-        <div className="cardapio-item" key={prato.id} id={prato.id}>
+      {favoritos.length > 0 ? favoritos.map((prato) => (
+        <div className="cardapio-item" key={prato.id}>
           <div className="image-container">
-            <img src={prato.imagem} alt={prato.nome} />
+            <img src={prato.imagemUrl} alt={prato.nome} />
           </div>
           <div className="text-content">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{prato.preco}</div>
+            <div className="price">{`R$ ${prato.preco}`}</div>
             <Link to={`/produto/${prato.id}`}>
               <button><span>Ver Mais</span></button>
             </Link>
           </div>
         </div>
-      ))}
-      <h2 id="Porcoes">Porções</h2>
-      {pratosMock.porcoes.map((prato) => (
-        <div className="item-card" key={prato.id} id={prato.id}>
-          <div className="image-wrapper">
-            <img src={prato.imagem} alt={prato.nome} />
-          </div>
-          <div className="details">
-            <h3>{prato.nome}</h3>
-            <p>{prato.descricao}</p>
-            <div className="price-tag">{prato.preco}</div>
-            <Link to={`/produto/${prato.id}`}>
-              <button><span>Ver Mais</span></button>
-            </Link>
-          </div>
-        </div>
-      ))}
-      <h2 id="Sobremesas">Sobremesas</h2>
-      {pratosMock.sobremesas.map((prato) => (
-        <div className="item-card" key={prato.id} id={prato.id}>
-          <div className="image-wrapper">
-            <img src={prato.imagem} alt={prato.nome} />
-          </div>
-          <div className="details">
-            <h3>{prato.nome}</h3>
-            <p>{prato.descricao}</p>
-            <div className="price-tag">{prato.preco}</div>
-            <Link to={`/produto/${prato.id}`}>
-              <button><span>Ver Mais</span></button>
-            </Link>
-          </div>
-        </div>
-      ))}
-      <h2 id="Bebidas">Bebidas</h2>
-      {pratosMock.bebidas.map((prato) => (
-        <div className="item-card" key={prato.id} id={prato.id}>
-          <div className="image-wrapper">
-            <img src={prato.imagem} alt={prato.nome} />
-          </div>
-          <div className="details">
-            <h3>{prato.nome}</h3>
-            <p>{prato.descricao}</p>
-            <div className="price-tag">{prato.preco}</div>
-            <Link to={`/produto/${prato.id}`}>
-              <button><span>Ver Mais</span></button>
-            </Link>
-          </div>
-        </div>
-      ))}
+      )) : <p>Carregando Favoritos...</p>}
 
+      <h2 id="Executivos">Executivos</h2>
+      {executivos.length > 0 ? executivos.map((prato) => (
+        <div className="cardapio-item" key={prato.id}>
+          <div className="image-container">
+            <img src={prato.imagemUrl} alt={prato.nome} />
+          </div>
+          <div className="text-content">
+            <h3>{prato.nome}</h3>
+            <p>{prato.descricao}</p>
+            <div className="price">{`R$ ${prato.preco}`}</div>
+            <Link to={`/produto/${prato.id}`} className="cardapio-header">
+              <button><span>Ver Mais</span></button>
+            </Link>
+          </div>
+        </div>
+      )) : <p>Carregando Executivos...</p>}
+
+      <h2 id="Porcoes">Porções</h2>
+      {porcoes.length > 0 ? porcoes.map((prato) => (
+        <div className="item-card" key={prato.id}>
+          <div className="image-wrapper">
+            <img src={prato.imagemUrl} alt={prato.nome} />
+          </div>
+          <div className="details">
+            <h3>{prato.nome}</h3>
+            <p>{prato.descricao}</p>
+            <div className="price-tag">{`R$ ${prato.preco}`}</div>
+            <Link to={`/produto/${prato.id}`}>
+              <button><span>Ver Mais</span></button>
+            </Link>
+          </div>
+        </div>
+      )) : <p>Carregando Porções...</p>}
+
+      <h2 id="Sobremesas">Sobremesas</h2>
+      {sobremesas.length > 0 ? sobremesas.map((prato) => (
+        <div className="item-card" key={prato.id}>
+          <div className="image-wrapper">
+            <img src={prato.imagemUrl} alt={prato.nome} />
+          </div>
+          <div className="details">
+            <h3>{prato.nome}</h3>
+            <p>{prato.descricao}</p>
+            <div className="price-tag">{`R$ ${prato.preco}`}</div>
+            <Link to={`/produto/${prato.id}`}>
+              <button><span>Ver Mais</span></button>
+            </Link>
+          </div>
+        </div>
+      )) : <p>Carregando Sobremesas...</p>}
+
+      <h2 id="Bebidas">Bebidas</h2>
+      {bebidas.length > 0 ? bebidas.map((prato) => (
+        <div className="item-card" key={prato.id}>
+          <div className="image-wrapper">
+            <img src={prato.imagemUrl} alt={prato.nome} />
+          </div>
+          <div className="details">
+            <h3>{prato.nome}</h3>
+            <p>{prato.descricao}</p>
+            <div className="price-tag">{`R$ ${prato.preco}`}</div>
+            <Link to={`/produto/${prato.id}`}>
+              <button><span>Ver Mais</span></button>
+            </Link>
+          </div>
+        </div>
+      )) : <p>Carregando Bebidas...</p>}
     </div>
   );
 }

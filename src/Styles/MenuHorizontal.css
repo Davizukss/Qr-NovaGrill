@@ -112,9 +112,6 @@
     overflow-x: auto;
   }
 
-  .menu-horizontal.sticky {
-    justify-content: center; 
-  }
 
   .menu-item {
     width: 200px;
@@ -131,9 +128,7 @@
     height: 12vh;
  
   }
-  .menu-horizontal.sticky {
-    justify-content: center; 
-  }
+ 
   .menu-horizontal {
     overflow-x: auto; 
   }

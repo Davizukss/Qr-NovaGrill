@@ -5,6 +5,7 @@ import Favoritos from "../../assets/Favoritos.png";
 import Sobremesas from "../../assets/Sobremesas.png";
 import Bebidas from "../../assets/Bebidas.png";
 import Porcoes from "../../assets/Porcao.png";
+import Executivos from "../../assets/Porcao.png"; 
 
 const MenuHorizontal = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -14,7 +15,6 @@ const MenuHorizontal = () => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-
   const debounce = (func, delay) => {
     let timeout;
     return (...args) => {
@@ -22,7 +22,6 @@ const MenuHorizontal = () => {
       timeout = setTimeout(() => func(...args), delay);
     };
   };
-
 
   useEffect(() => {
     const checkDevice = () => {
@@ -35,7 +34,6 @@ const MenuHorizontal = () => {
     };
   }, []);
 
-  
   useEffect(() => {
     const updateThreshold = () => {
       const referenceElement = document.getElementById("Pratos");
@@ -49,7 +47,7 @@ const MenuHorizontal = () => {
     const handleScroll = debounce(() => {
       const threshold = updateThreshold();
       setIsSticky(window.scrollY >= threshold);
-    }, 50); 
+    }, 50);
 
     window.addEventListener("scroll", handleScroll);
 
@@ -70,8 +68,10 @@ const MenuHorizontal = () => {
     if (!isDragging.current || !isMobile) return;
     e.preventDefault();
     const x = e.pageX - menuRef.current.offsetLeft;
-    const walk = x - startX.current;
-    menuRef.current.scrollLeft = scrollLeft.current - walk;
+    const walk = (x - startX.current) * 1.5; 
+    requestAnimationFrame(() => {
+      menuRef.current.scrollLeft = scrollLeft.current - walk;
+    });
   };
 
   const handleMouseUpOrLeave = () => {
@@ -90,8 +90,10 @@ const MenuHorizontal = () => {
   const handleTouchMove = (e) => {
     if (!isDragging.current || !isMobile) return;
     const x = e.touches[0].pageX - menuRef.current.offsetLeft;
-    const walk = x - startX.current;
-    menuRef.current.scrollLeft = scrollLeft.current - walk;
+    const walk = (x - startX.current) * .80; 
+    requestAnimationFrame(() => {
+      menuRef.current.scrollLeft = scrollLeft.current - walk;
+    });
   };
 
   const handleTouchEnd = () => {
@@ -99,7 +101,6 @@ const MenuHorizontal = () => {
     isDragging.current = false;
   };
 
-  // Scroll suave para as seções
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -134,6 +135,12 @@ const MenuHorizontal = () => {
           <div className="title-overlay">Favoritos</div>
         </div>
       </div>
+      <div className="menu-item" onClick={() => scrollToSection("Executivos")}>
+        <div className="image-container">
+          <img src={Executivos} alt="Executivos" />
+          <div className="title-overlay">Executivos</div>
+        </div>
+      </div>
       <div className="menu-item" onClick={() => scrollToSection("Porcoes")}>
         <div className="image-container">
           <img src={Porcoes} alt="Porções" />
@@ -151,6 +158,8 @@ const MenuHorizontal = () => {
           <img src={Bebidas} alt="Bebidas" />
           <div className="title-overlay">Bebidas</div>
         </div>
+      
+
       </div>
     </div>
   );

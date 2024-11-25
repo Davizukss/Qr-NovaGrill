@@ -33,7 +33,7 @@ function NavBar() {
           <span className="bar"></span>
         </div>
 
-        <Link to="/Cardapio" className="navbar-logo">
+        <Link to="/Qr-NovaGrill/Cardapio" className="navbar-logo">
           <img src={logo} alt="Logo NovaGrill" />
         </Link>
 
