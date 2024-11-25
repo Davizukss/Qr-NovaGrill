@@ -101,7 +101,6 @@
 
 .menu-item img:hover {
   user-select: none;
-  transform: scale(1.1);
 }
 
 .menu-item:hover .image-overlay {
