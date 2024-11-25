@@ -1,7 +1,6 @@
 .menu-horizontal {
   height: 10rem;
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 0.5rem;
   margin-bottom: 10px;
@@ -113,37 +112,49 @@
   .menu-horizontal {
     overflow-x: auto;
   }
-  
+
+  .menu-horizontal.sticky {
+    justify-content: center; 
+  }
+
   .menu-item {
     width: 200px;
     height: 100px;
   }
-  
+
   .menu-item .title-overlay {
     font-size: 1.2rem;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+  .menu-horizontal.sticky {
+    height: 12vh;
+ 
+  }
+  .menu-horizontal.sticky {
+    justify-content: center; 
+  }
   .menu-horizontal {
     overflow-x: auto; 
   }
-
+  
   .menu-item {
     width: 200px;
     height: 100px;
   }
-
+  
   .menu-item .title-overlay {
     font-size: 1.5rem;
   }
   .menu-horizontal.sticky .menu-item {
+    border-radius: 8px;
     width: 15vw;
     height: 50px;
   }
   .menu-horizontal.sticky .menu-item .title-overlay {
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }
 
@@ -151,29 +162,47 @@
   .menu-horizontal {
     overflow-x: auto;
   }
-
+  .menu-horizontal.sticky {
+    height: 12vh;
+ 
+  }
+  .menu-horizontal.sticky {
+    justify-content: center; 
+  }
   .menu-item {
-    width: 180px;
-    height: 120px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
   }
 
   .menu-item .title-overlay {
-    font-size: 18px;
+    font-size: 1.3rem;
   }
 }
 
 @media (min-width: 1440px) {
+  .menu-horizontal.sticky {
+    justify-content: center; 
+  }
   .menu-horizontal {
-    overflow-x: auto;
+    justify-content: center; 
   }
-
   .menu-item {
-    width: 200px;
-    height: 150px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
   }
-
   .menu-item .title-overlay {
-    font-size: 20px;
+    font-size: 1.3rem;
+  }
+  .menu-horizontal.sticky .menu-item {
+    background-color: #500B0B;
+    width: 200px;
+    height: 50px;
+  }
+  .menu-horizontal.sticky .menu-item .title-overlay {
+    
+    font-size: 1.3rem;
   }
 }
 

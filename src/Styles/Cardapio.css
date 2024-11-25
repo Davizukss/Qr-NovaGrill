@@ -237,5 +237,43 @@ html {
 }
 
 @media (min-width: 1024px) {
-  
+  .cardapio-item {
+    flex-direction: column;
+  }
+  .text-content{
+    font-size: 1.5rem;
+  }
+  .cardapio-item p {
+    font-size: 1rem;
+  }
+  .cardapio-item img {
+    width: 400px;
+  }
+  .details span{
+    font-size: 1.3rem;
+  }
+  .item-card button {
+    max-width: 400px;
+    padding: 1.2rem;
+  }
+  .image-wrapper img {
+    width: 400px;
+    height: auto;
+  }
+
+  .cardapio-item h2 {
+    font-size: 1.5rem;
+  }
+
+  .cardapio-item p {
+    font-size: 1rem;
+  }
+  .cardapio-item span {
+    font-size: 1.3rem;
+  }
+  .cardapio-item button {
+    width: 100%;
+    padding: 1rem;
+
+  }
 }

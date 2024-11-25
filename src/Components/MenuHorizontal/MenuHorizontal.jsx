@@ -14,25 +14,19 @@ const MenuHorizontal = () => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= 500) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+  const debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), delay);
     };
-  }, []);
+  };
+
 
   useEffect(() => {
     const checkDevice = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1024);
     };
     checkDevice();
     window.addEventListener("resize", checkDevice);
@@ -40,6 +34,29 @@ const MenuHorizontal = () => {
       window.removeEventListener("resize", checkDevice);
     };
   }, []);
+
+  
+  useEffect(() => {
+    const updateThreshold = () => {
+      const referenceElement = document.getElementById("Pratos");
+      if (referenceElement) {
+        const rect = referenceElement.getBoundingClientRect();
+        return rect.top + window.scrollY - window.innerHeight * 0.5; 
+      }
+      return window.innerHeight * 0.1; 
+    };
+
+    const handleScroll = debounce(() => {
+      const threshold = updateThreshold();
+      setIsSticky(window.scrollY >= threshold);
+    }, 50); 
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMobile]);
 
   const handleMouseDown = (e) => {
     if (!isMobile) return;
@@ -82,6 +99,7 @@ const MenuHorizontal = () => {
     isDragging.current = false;
   };
 
+  // Scroll suave para as seções
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
