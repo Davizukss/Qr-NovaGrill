@@ -67,7 +67,7 @@ export default function PratoDetalhes() {
           <strong>Variação:{" "}
             {produto.variacao ? produto.variacao : "Sem variações disponíveis"}
           </strong>
-          {produto.nome.toUpperCase() === 'SUCOS' && (
+          {produto.nome.toUpperCase() === 'SUCOS' && produto.nome.toUpperCase() === 'BALDES PROMO' ||(
             <div className="tipos-dropdown">
               <label htmlFor="tipos">Sabores Disponíveis: </label>
               <select

@@ -125,12 +125,12 @@ function Cardapio() {
     <div className="details">
       <h3>{prato.nome}</h3>
       <p>{prato.descricao}</p>
-      {(prato.nome.toUpperCase() != 'SUCOS') && (
+      {(prato.nome.toUpperCase() != 'SUCOS' && prato.nome.toUpperCase() != 'BALDES PROMO') && (
       <div className="price-tag">{`${(prato.preco)}`}</div>
       )}
-      {(prato.nome.toUpperCase() === 'SUCOS') && (
+      {(prato.nome.toUpperCase() === 'SUCOS' || prato.nome.toUpperCase() === 'BALDES PROMO') && (
         <div>
-        <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
+        <div className="price-tag">{`A partir de R$ ${formatarPreco(prato.preco)}`}</div>
         <Link to={`/produto/${prato.id}`}>
           <button><span>Ver Mais</span></button>
         </Link>
