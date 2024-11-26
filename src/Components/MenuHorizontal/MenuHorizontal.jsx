@@ -66,52 +66,53 @@ const MenuHorizontal = () => {
     }
   };
 
-  const handleMouseDown = (e) => {
+  const handleDragStart = (e) => {
     setIsDragging(true);
-    setStartX(e.pageX - menuRef.current.offsetLeft);
+    const pageX = e.type === "touchstart" ? e.touches[0].pageX : e.pageX;
+    setStartX(pageX - menuRef.current.offsetLeft);
     setScrollLeft(menuRef.current.scrollLeft);
   };
 
-  const handleMouseMove = (e) => {
+  const handleDragMove = (e) => {
     if (!isDragging) return;
+
     e.preventDefault();
-    const x = e.pageX - menuRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Velocidade do arraste
+    const pageX = e.type === "touchmove" ? e.touches[0].pageX : e.pageX;
+    const x = pageX - menuRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Reduzindo a velocidade para suavizar
     menuRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const handleMouseUp = () => {
+  const handleDragEnd = () => {
     setIsDragging(false);
   };
 
-  const handleTouchStart = (e) => {
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - menuRef.current.offsetLeft);
-    setScrollLeft(menuRef.current.scrollLeft);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].pageX - menuRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    menuRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener("mousemove", handleDragMove);
+      window.addEventListener("mouseup", handleDragEnd);
+      window.addEventListener("touchmove", handleDragMove);
+      window.addEventListener("touchend", handleDragEnd);
+    } else {
+      window.removeEventListener("mousemove", handleDragMove);
+      window.removeEventListener("mouseup", handleDragEnd);
+      window.removeEventListener("touchmove", handleDragMove);
+      window.removeEventListener("touchend", handleDragEnd);
+    }
+    return () => {
+      window.removeEventListener("mousemove", handleDragMove);
+      window.removeEventListener("mouseup", handleDragEnd);
+      window.removeEventListener("touchmove", handleDragMove);
+      window.removeEventListener("touchend", handleDragEnd);
+    };
+  }, [isDragging]);
 
   return (
     <div
       className={`menu-horizontal ${isSticky ? "sticky" : ""}`}
       ref={menuRef}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      onMouseDown={handleDragStart}
+      onTouchStart={handleDragStart}
     >
       <div className="menu-item" onClick={() => scrollToSection("Pratos")}>
         <div className="image-container">

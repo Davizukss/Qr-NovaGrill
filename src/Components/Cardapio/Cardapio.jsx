@@ -90,15 +90,15 @@ function Cardapio() {
 
       <h2 id="Executivos">Executivos</h2>
       {executivos.length > 0 ? executivos.map((prato) => (
-        <div className="cardapio-item" key={prato.id}>
-          <div className="image-container">
+        <div className="item-card" key={prato.id}>
+          <div className="image-wrapper">
             <img src={prato.imagemUrl} alt={prato.nome} />
           </div>
-          <div className="text-content">
+          <div className="details">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{`R$ ${formatarPreco(prato.preco)}`}</div>
-            <Link to={`/produto/${prato.id}`} className="cardapio-header">
+            <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
+            <Link to={`/produto/${prato.id}`}>
               <button><span>Ver Mais</span></button>
             </Link>
           </div>

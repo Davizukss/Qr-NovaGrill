@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../../Styles/NavBar.css';
 import logo from "../../assets/logoNovaGrill.png";
 import Pesquisa from '../Pesquisa/Pesquisa';
-import { pratosMock } from '../../mocks/CardapioMocks';
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,7 +43,7 @@ function NavBar() {
         </div>
       </div>
 
-      <Pesquisa searchOpen={searchOpen} pratosMock={pratosMock} />
+      <Pesquisa searchOpen={searchOpen} />
 
       <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
         <div className="close-menu">
