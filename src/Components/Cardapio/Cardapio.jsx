@@ -3,7 +3,7 @@ import '../../Styles/Cardapio.css';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../../Api/firebaseConfig.jsx';
 import { Link } from 'react-router-dom';
-//import addMultipleDocuments from '../../Api/adicionarPratos.jsx'; 
+// import addMultipleDocuments from '../../Api/adicionarPratos.jsx'; 
 const db = getFirestore(app);
 
 function Cardapio() {
@@ -71,23 +71,6 @@ function Cardapio() {
         </div>
       )) : <p>Carregando Pratos...</p>}
 
-      <h2 id="Favoritos">Favoritos</h2>
-      {favoritos.length > 0 ? favoritos.map((prato) => (
-        <div className="cardapio-item" key={prato.id}>
-          <div className="image-container">
-            <img src={prato.imagemUrl} alt={prato.nome} />
-          </div>
-          <div className="text-content">
-            <h3>{prato.nome}</h3>
-            <p>{prato.descricao}</p>
-            <div className="price">{`R$ ${formatarPreco(prato.preco)}`}</div>
-            <Link to={`/produto/${prato.id}`}>
-              <button><span>Ver Mais</span></button>
-            </Link>
-          </div>
-        </div>
-      )) : <p>Carregando Favoritos...</p>}
-
       <h2 id="Executivos">Executivos</h2>
       {executivos.length > 0 ? executivos.map((prato) => (
         <div className="item-card" key={prato.id}>
@@ -115,9 +98,6 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
-            <Link to={`/produto/${prato.id}`}>
-              <button><span>Ver Mais</span></button>
-            </Link>
           </div>
         </div>
       )) : <p>Carregando Porções...</p>}
@@ -132,29 +112,34 @@ function Cardapio() {
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
             <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
-            <Link to={`/produto/${prato.id}`}>
-              <button><span>Ver Mais</span></button>
-            </Link>
           </div>
         </div>
       )) : <p>Carregando Sobremesas...</p>}
 
-      <h2 id="Bebidas">Bebidas</h2>
-      {bebidas.length > 0 ? bebidas.map((prato) => (
-        <div className="item-card" key={prato.id}>
-          <div className="image-wrapper">
-            <img src={prato.imagemUrl} alt={prato.nome} />
-          </div>
-          <div className="details">
-            <h3>{prato.nome}</h3>
-            <p>{prato.descricao}</p>
-            <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
-            <Link to={`/produto/${prato.id}`}>
-              <button><span>Ver Mais</span></button>
-            </Link>
-          </div>
+<h2 id="Bebidas">Bebidas</h2>
+{bebidas.length > 0 ? bebidas.map((prato) => (
+  <div className="item-card" key={prato.id}>
+    <div className="image-wrapper">
+      <img src={prato.imagemUrl} alt={prato.nome} />
+    </div>
+    <div className="details">
+      <h3>{prato.nome}</h3>
+      <p>{prato.descricao}</p>
+      {(prato.nome.toUpperCase() != 'SUCOS') && (
+      <div className="price-tag">{`${(prato.preco)}`}</div>
+      )}
+      {(prato.nome.toUpperCase() === 'SUCOS') && (
+        <div>
+        <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
+        <Link to={`/produto/${prato.id}`}>
+          <button><span>Ver Mais</span></button>
+        </Link>
         </div>
-      )) : <p>Carregando Bebidas...</p>}
+      )}
+    </div>
+  </div>
+)) : <p>Carregando Bebidas...</p>}
+
     </div>
   );
 }

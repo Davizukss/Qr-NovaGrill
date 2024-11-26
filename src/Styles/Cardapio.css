@@ -1,6 +1,16 @@
 html {
   scroll-behavior: smooth;
 }
+
+.cardapio-container {
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.cardapio-item,
 .item-card {
   background-color: #fff;
   padding: 1rem;
@@ -15,19 +25,21 @@ html {
   text-decoration: none;
 }
 
-.image-wrapper {
+.cardapio-item .image-container,
+.item-card .image-wrapper {
   flex-shrink: 0;
 }
 
+.cardapio-item img,
 .item-card img {
-  width: 120px;  
+  width: 120px;
   height: 120px;
   border-radius: 8px;
   object-fit: cover;
 }
 
-
-.details {
+.details,
+.text-content {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -35,20 +47,21 @@ html {
   text-align: left;
 }
 
-
-.details h3 {
+.details h3,
+.text-content h3 {
   font-size: 1.2rem;
   color: #333;
 }
 
-
-.details p {
+.details p,
+.text-content p {
   margin-top: -0.5rem;
   font-size: 0.9rem;
   color: #555;
 }
 
-.item-card button {
+.item-card button,
+.cardapio-item button {
   color: white;
   border: none;
   padding: 0.8rem;
@@ -60,19 +73,12 @@ html {
   text-align: center;
   margin-top: 0.5rem;
 }
+
 .price-tag {
   font-size: 1.2rem;
   font-weight: bold;
   color: #000;
   margin-top: 0.5rem;
-}
-
-.cardapio-container {
-  padding: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 100%;
 }
 
 .cardapio-header {
@@ -85,70 +91,6 @@ html {
   color: #333;
 }
 
-.cardapio-item {
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  width: 100%;
-  height: auto;
-  align-items: center;
-  text-decoration: none;
-}
-
-.cardapio-item .image-container {
-  flex-shrink: 0;
-}
-
-.cardapio-item img {
-  width: 300px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-top: 60px;
-}
-
-.cardapio-item .text-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-}
-
-.cardapio-item h2 {
-  white-space: nowrap;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.cardapio-item p {
-  margin-top: -0.5rem;
-  font-size: 0.8rem;
-  color: #555;
-}
-
-.cardapio-item .price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #000;
-}
-
-.cardapio-item button {
-  color: white;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  background-color: #500B0B;
-  text-align: center;
-  margin-top: 0.5rem;
-}
-
 .welcome-text {
   padding-left: 1rem;
   text-align: left;
@@ -156,10 +98,28 @@ html {
   color: #000;
 }
 
+.item-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cardapio-item img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 60px;
+}
+
+
+
 @media (max-width: 767px) {
   .cardapio-container {
     flex-direction: column;
     gap: 1rem;
+    
   }
 
   .cardapio-item {
@@ -191,36 +151,47 @@ html {
     padding: 1rem;
     text-align: center;
   }
+
   .item-card img {
-    width: 130px;  
+    width: 100%;
+    max-width: 150px;
     height: 90px;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: fill;
   }
 
+  .details h3 {
+    font-size: 1rem;
+    color: #333;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-
   .cardapio-item {
     flex-direction: column;
   }
-  .text-content{
+
+  .text-content {
     font-size: 1.5rem;
   }
+
   .cardapio-item p {
     font-size: 1rem;
   }
+
   .cardapio-item img {
     width: 400px;
   }
-  .details span{
+
+  .details span {
     font-size: 1.3rem;
   }
+
   .item-card button {
     max-width: 400px;
     padding: 1.2rem;
   }
+
   .image-wrapper img {
     width: 400px;
     height: auto;
@@ -233,13 +204,14 @@ html {
   .cardapio-item p {
     font-size: 1rem;
   }
+
   .cardapio-item span {
     font-size: 1.3rem;
   }
+
   .cardapio-item button {
     width: 100%;
     padding: 1rem;
-
   }
 }
 
@@ -247,22 +219,28 @@ html {
   .cardapio-item {
     flex-direction: column;
   }
-  .text-content{
+
+  .text-content {
     font-size: 1.5rem;
   }
+
   .cardapio-item p {
     font-size: 1rem;
   }
+
   .cardapio-item img {
     width: 400px;
   }
-  .details span{
+
+  .details span {
     font-size: 1.3rem;
   }
+
   .item-card button {
     max-width: 400px;
     padding: 1.2rem;
   }
+
   .image-wrapper img {
     width: 400px;
     height: auto;
@@ -275,18 +253,20 @@ html {
   .cardapio-item p {
     font-size: 1rem;
   }
+
   .cardapio-item span {
     font-size: 1.3rem;
   }
+
   .cardapio-item button {
     width: 100%;
     padding: 1rem;
-
   }
+
   @media (min-width: 1440px) {
-    .cardapio-container{
-      max-width: 70%; 
-      margin: 0 auto; 
+    .cardapio-container {
+      max-width: 70%;
+      margin: 0 auto;
     }
   }
 }

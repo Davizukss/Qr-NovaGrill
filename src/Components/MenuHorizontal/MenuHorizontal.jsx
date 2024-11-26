@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../Styles/MenuHorizontal.css";
 import Pratos from "../../assets/Prato.png";
-import Favoritos from "../../assets/Favoritos.png";
 import Sobremesas from "../../assets/Sobremesas.png";
 import Bebidas from "../../assets/Bebidas.png";
 import Porcoes from "../../assets/Porcao.png";
-import Executivos from "../../assets/Porcao.png";
+import Executivos from "../../assets/Executivos.png";
 
 const MenuHorizontal = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -76,10 +75,14 @@ const MenuHorizontal = () => {
   const handleDragMove = (e) => {
     if (!isDragging) return;
 
-    e.preventDefault();
+    // Evita a rolagem padrão apenas se for um arraste
+    if (e.cancelable) {
+      e.preventDefault(); // Impede rolagem apenas quando o arraste é detectado
+    }
+
     const pageX = e.type === "touchmove" ? e.touches[0].pageX : e.pageX;
     const x = pageX - menuRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; // Reduzindo a velocidade para suavizar
+    const walk = (x - startX) * 1.5;
     menuRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -89,9 +92,9 @@ const MenuHorizontal = () => {
 
   useEffect(() => {
     if (isDragging) {
-      window.addEventListener("mousemove", handleDragMove);
+      window.addEventListener("mousemove", handleDragMove, { passive: false });
       window.addEventListener("mouseup", handleDragEnd);
-      window.addEventListener("touchmove", handleDragMove);
+      window.addEventListener("touchmove", handleDragMove, { passive: false });
       window.addEventListener("touchend", handleDragEnd);
     } else {
       window.removeEventListener("mousemove", handleDragMove);
@@ -99,6 +102,7 @@ const MenuHorizontal = () => {
       window.removeEventListener("touchmove", handleDragMove);
       window.removeEventListener("touchend", handleDragEnd);
     }
+
     return () => {
       window.removeEventListener("mousemove", handleDragMove);
       window.removeEventListener("mouseup", handleDragEnd);
@@ -118,12 +122,6 @@ const MenuHorizontal = () => {
         <div className="image-container">
           <img src={Pratos} alt="Pratos" />
           <div className="title-overlay">Pratos</div>
-        </div>
-      </div>
-      <div className="menu-item" onClick={() => scrollToSection("Favoritos")}>
-        <div className="image-container">
-          <img src={Favoritos} alt="Favoritos" />
-          <div className="title-overlay">Favoritos</div>
         </div>
       </div>
       <div className="menu-item" onClick={() => scrollToSection("Executivos")}>

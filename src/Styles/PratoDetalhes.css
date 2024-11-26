@@ -50,6 +50,30 @@ body {
   bottom: 0;
   left: 0;
 }
+.tipos-dropdown {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column; 
+}
+
+.tipos-dropdown select {
+  border-radius: 8px;
+  border: 1px solid #ccc; 
+  box-shadow: 0 0 8px 0.1px rgba(0, 0, 0, 0.1); 
+  padding: 8px 12px; 
+  font-size: 14px;
+  margin-left: 10px;
+  color: #333; 
+  background-color: #fff;
+  cursor: pointer; 
+}
+
+
+.tipos-dropdown label {
+  font-weight: bold;
+  margin-bottom: 5px; 
+}
+
 
 .prato-detalhes .voltar-seta {
   cursor: pointer;

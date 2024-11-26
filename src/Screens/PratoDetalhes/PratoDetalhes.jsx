@@ -8,6 +8,7 @@ export default function PratoDetalhes() {
   const { id } = useParams();
   const [produto, setProduto] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [tipoSelecionado, setTipoSelecionado] = useState(''); // Para armazenar o tipo selecionado
 
   useEffect(() => {
     const fetchProduto = async () => {
@@ -41,6 +42,11 @@ export default function PratoDetalhes() {
 
   const precoFormatado = produto.preco.toFixed(2);
 
+  // Função para lidar com a mudança da seleção
+  const handleTipoChange = (event) => {
+    setTipoSelecionado(event.target.value);
+  };
+
   return (
     <div className="prato-detalhes">
       <div className="voltar-btn">
@@ -61,6 +67,26 @@ export default function PratoDetalhes() {
           <strong>Variação:{" "}
             {produto.variacao ? produto.variacao : "Sem variações disponíveis"}
           </strong>
+          {produto.nome.toUpperCase() === 'SUCOS' && (
+            <div className="tipos-dropdown">
+              <label htmlFor="tipos">Sabores Disponíveis: </label>
+              <select
+                id="tipos"
+                value={tipoSelecionado}
+                onChange={handleTipoChange}
+              >
+                {produto.Tipos && produto.Tipos.length > 0 ? (
+                  produto.Tipos.map((tipo, index) => (
+                    <option key={index} value={tipo}>
+                      {tipo} 
+                    </option>
+                  ))
+                ) : (
+                  <option value="">Nenhum tipo disponível</option>
+                )}
+              </select>
+            </div>
+          )}
         </p>
       </div>
 
