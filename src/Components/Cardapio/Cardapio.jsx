@@ -1,12 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../../Styles/Cardapio.css';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../../Api/firebaseConfig.jsx';
 import { Link } from 'react-router-dom';
-
+//import addMultipleDocuments from '../../Api/adicionarPratos.jsx'; 
 const db = getFirestore(app);
 
 function Cardapio() {
+
+  //
+  // const hasExecuted = useRef(false);
+
+  // useEffect(() => {
+  //   if (!hasExecuted.current) {
+  //     addMultipleDocuments();
+  //     hasExecuted.current = true;
+  //   }
+  // }, []);
+
   const [pratos, setPratos] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
   const [porcoes, setPorcoes] = useState([]);
@@ -35,6 +46,12 @@ function Cardapio() {
     fetchData();
   }, []);
 
+ 
+  const formatarPreco = (preco) => {
+    return preco ? parseFloat(preco).toFixed(2) : "0.00"; 
+  };
+
+
   return (
     <div className="cardapio-container">
       <h2 id="Pratos">Pratos</h2>
@@ -46,7 +63,7 @@ function Cardapio() {
           <div className="text-content">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{`R$ ${prato.preco}`}</div>
+            <div className="price">{`R$ ${formatarPreco(prato.preco)}`}</div>
             <Link to={`/produto/${prato.id}`} className="cardapio-header">
               <button><span>Ver Mais</span></button>
             </Link>
@@ -63,7 +80,7 @@ function Cardapio() {
           <div className="text-content">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{`R$ ${prato.preco}`}</div>
+            <div className="price">{`R$ ${formatarPreco(prato.preco)}`}</div>
             <Link to={`/produto/${prato.id}`}>
               <button><span>Ver Mais</span></button>
             </Link>
@@ -80,7 +97,7 @@ function Cardapio() {
           <div className="text-content">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price">{`R$ ${prato.preco}`}</div>
+            <div className="price">{`R$ ${formatarPreco(prato.preco)}`}</div>
             <Link to={`/produto/${prato.id}`} className="cardapio-header">
               <button><span>Ver Mais</span></button>
             </Link>
@@ -97,7 +114,7 @@ function Cardapio() {
           <div className="details">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price-tag">{`R$ ${prato.preco}`}</div>
+            <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
             <Link to={`/produto/${prato.id}`}>
               <button><span>Ver Mais</span></button>
             </Link>
@@ -114,7 +131,7 @@ function Cardapio() {
           <div className="details">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price-tag">{`R$ ${prato.preco}`}</div>
+            <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
             <Link to={`/produto/${prato.id}`}>
               <button><span>Ver Mais</span></button>
             </Link>
@@ -131,7 +148,7 @@ function Cardapio() {
           <div className="details">
             <h3>{prato.nome}</h3>
             <p>{prato.descricao}</p>
-            <div className="price-tag">{`R$ ${prato.preco}`}</div>
+            <div className="price-tag">{`R$ ${formatarPreco(prato.preco)}`}</div>
             <Link to={`/produto/${prato.id}`}>
               <button><span>Ver Mais</span></button>
             </Link>

@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../Api/firebaseConfig';
 import '../../Styles/NavBar.css';
 
-export default function Pesquisa({ searchOpen, pratosMock }) {
+export default function Pesquisa({ searchOpen }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredPratos, setFilteredPratos] = useState([]);
+  const [allItems, setAllItems] = useState([]);
+
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'itens'));
+        const items = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAllItems(items);
+      } catch (error) {
+        console.error('Erro ao buscar itens do Firebase:', error);
+      }
+    };    
+
+    fetchItems();
+  }, []);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-
-    const allItems = [
-      ...pratosMock.pratos,
-      ...pratosMock.favoritos,
-      ...pratosMock.porcoes,
-      ...pratosMock.sobremesas,
-      ...pratosMock.bebidas,
-    ];
 
     const filtered = allItems.filter((item) =>
       item.nome.toLowerCase().includes(term.toLowerCase())
@@ -41,7 +54,7 @@ export default function Pesquisa({ searchOpen, pratosMock }) {
               filteredPratos.map((item) => (
                 <li key={item.id} className="search-item">
                   <Link to={`/produto/${item.id}`} className="search-link">
-                    <img src={item.imagem} alt={item.nome} />
+                    <img src={item.imagemUrl} alt={item.nome} />
                     <span>{item.nome}</span>
                   </Link>
                 </li>

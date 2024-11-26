@@ -5,101 +5,56 @@ import Favoritos from "../../assets/Favoritos.png";
 import Sobremesas from "../../assets/Sobremesas.png";
 import Bebidas from "../../assets/Bebidas.png";
 import Porcoes from "../../assets/Porcao.png";
-import Executivos from "../../assets/Porcao.png"; 
+import Executivos from "../../assets/Porcao.png";
 
 const MenuHorizontal = () => {
   const [isSticky, setIsSticky] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-  const debounce = (func, delay) => {
-    let timeout;
+  const throttle = (func, limit) => {
+    let lastFunc;
+    let lastRan;
     return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func(...args), delay);
+      const context = this;
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(() => {
+          if (Date.now() - lastRan >= limit) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          }
+        }, limit - (Date.now() - lastRan));
+      }
     };
   };
-
-  useEffect(() => {
-    const checkDevice = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-    checkDevice();
-    window.addEventListener("resize", checkDevice);
-    return () => {
-      window.removeEventListener("resize", checkDevice);
-    };
-  }, []);
 
   useEffect(() => {
     const updateThreshold = () => {
       const referenceElement = document.getElementById("Pratos");
       if (referenceElement) {
         const rect = referenceElement.getBoundingClientRect();
-        return rect.top + window.scrollY - window.innerHeight * 0.5; 
+        return rect.top + window.scrollY - window.innerHeight * 0.5;
       }
-      return window.innerHeight * 0.1; 
+      return window.innerHeight * 0.1;
     };
 
-    const handleScroll = debounce(() => {
+    const handleScroll = throttle(() => {
       const threshold = updateThreshold();
       setIsSticky(window.scrollY >= threshold);
-    }, 50);
+    }, 20);
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isMobile]);
-
-  const handleMouseDown = (e) => {
-    if (!isMobile) return;
-    isDragging.current = true;
-    startX.current = e.pageX - menuRef.current.offsetLeft;
-    scrollLeft.current = menuRef.current.scrollLeft;
-    menuRef.current.style.cursor = "grabbing";
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging.current || !isMobile) return;
-    e.preventDefault();
-    const x = e.pageX - menuRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5; 
-    requestAnimationFrame(() => {
-      menuRef.current.scrollLeft = scrollLeft.current - walk;
-    });
-  };
-
-  const handleMouseUpOrLeave = () => {
-    if (!isMobile) return;
-    isDragging.current = false;
-    menuRef.current.style.cursor = "grab";
-  };
-
-  const handleTouchStart = (e) => {
-    if (!isMobile) return;
-    isDragging.current = true;
-    startX.current = e.touches[0].pageX - menuRef.current.offsetLeft;
-    scrollLeft.current = menuRef.current.scrollLeft;
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging.current || !isMobile) return;
-    const x = e.touches[0].pageX - menuRef.current.offsetLeft;
-    const walk = (x - startX.current) * .80; 
-    requestAnimationFrame(() => {
-      menuRef.current.scrollLeft = scrollLeft.current - walk;
-    });
-  };
-
-  const handleTouchEnd = () => {
-    if (!isMobile) return;
-    isDragging.current = false;
-  };
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -111,14 +66,49 @@ const MenuHorizontal = () => {
     }
   };
 
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - menuRef.current.offsetLeft);
+    setScrollLeft(menuRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - menuRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Velocidade do arraste
+    menuRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - menuRef.current.offsetLeft);
+    setScrollLeft(menuRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - menuRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    menuRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   return (
     <div
       className={`menu-horizontal ${isSticky ? "sticky" : ""}`}
       ref={menuRef}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUpOrLeave}
-      onMouseLeave={handleMouseUpOrLeave}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -158,8 +148,6 @@ const MenuHorizontal = () => {
           <img src={Bebidas} alt="Bebidas" />
           <div className="title-overlay">Bebidas</div>
         </div>
-      
-
       </div>
     </div>
   );

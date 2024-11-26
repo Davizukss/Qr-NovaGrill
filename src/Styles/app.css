@@ -16,10 +16,10 @@ body {
   width: 100%;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1120px) {
   #root {
-    width: 50%;
     margin: 0 auto;
+    width: 60%;
   }
 }
 

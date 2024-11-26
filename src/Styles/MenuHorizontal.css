@@ -19,8 +19,8 @@
   background-color: #fff;
   margin-top: 0;
   height: 8vh;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
-  overflow-x: auto; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow-x: auto;
 }
 
 .menu-horizontal.sticky .menu-item {
@@ -75,7 +75,7 @@
   position: relative;
   cursor: grab;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid transparent;
 }
 
@@ -126,44 +126,46 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .menu-horizontal.sticky {
     height: 12vh;
- 
   }
- 
+
   .menu-horizontal {
-    overflow-x: auto; 
+    overflow-x: auto;
   }
-  
+
   .menu-item {
+    box-shadow: none;
     width: 200px;
     height: 100px;
   }
-  
+
   .menu-item .title-overlay {
     font-size: 1.5rem;
   }
+
   .menu-horizontal.sticky .menu-item {
     border-radius: 8px;
     width: 15vw;
     height: 50px;
   }
+
   .menu-horizontal.sticky .menu-item .title-overlay {
     color: #fff;
     font-size: 1rem;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1440px) {
+@media (min-width: 1025px) and (max-width: 1440px) {
   .menu-horizontal {
     overflow-x: auto;
+    align-items: center;
   }
+
   .menu-horizontal.sticky {
     height: 12vh;
- 
   }
-  .menu-horizontal.sticky {
-    justify-content: center; 
-  }
+
   .menu-item {
+    box-shadow: none;
     width: 100%;
     max-width: 250px;
     height: auto;
@@ -172,31 +174,49 @@
   .menu-item .title-overlay {
     font-size: 1.3rem;
   }
+
 }
 
 @media (min-width: 1440px) {
-  .menu-horizontal.sticky {
-    justify-content: center; 
-  }
   .menu-horizontal {
-    justify-content: center; 
+    width: 100%;
+
   }
+
   .menu-item {
+    box-shadow: none;
     width: 100%;
     max-width: 250px;
     height: auto;
   }
+
   .menu-item .title-overlay {
     font-size: 1.3rem;
   }
+
   .menu-horizontal.sticky .menu-item {
     background-color: #500B0B;
     width: 200px;
     height: 50px;
   }
+
   .menu-horizontal.sticky .menu-item .title-overlay {
-    
+
     font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 2160px) {
+  .menu-horizontal {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1119px) {
+  .menu-horizontal {
+    overflow-x: auto;
+    align-items: center;
+    justify-content: center;
   }
 }
 
